@@ -12,7 +12,9 @@ const Header = () => {
         <header>
             <SuperHeader />
             <MainHeader>
-                <Logo />
+                <Side>
+                    <Logo />
+                </Side>
                 <Nav>
                     <NavLink href="/sale">Sale</NavLink>
                     <NavLink href="/new">New&nbsp;Releases</NavLink>
@@ -21,26 +23,30 @@ const Header = () => {
                     <NavLink href="/kids">Kids</NavLink>
                     <NavLink href="/collections">Collections</NavLink>
                 </Nav>
+                <Side />
             </MainHeader>
         </header>
     );
 };
 
+const Side = styled.div`
+    /* forces the nav to sit in the middle */
+    flex: 1;
+`;
+
 const MainHeader = styled.div`
     display: flex;
     height: 72px;
     justify-content: center;
-    align-items: center;
-    padding: 0 32px;
+    align-items: baseline;
+    padding: 18px 32px; /* vertically center text */
     border-bottom: 1px solid ${COLORS.gray[300]};
 `;
 
 const Nav = styled.nav`
     display: flex;
     gap: 48px;
-    /* makes the logo left-justified; don't love this solution */
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0px 48px; /* add space between logo and nav on small viewports */
 `;
 
 const NavLink = styled.a`
