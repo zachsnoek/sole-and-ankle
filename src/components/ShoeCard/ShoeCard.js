@@ -55,17 +55,14 @@ const Link = styled.a`
     color: inherit;
 `;
 
-const Wrapper = styled.article`
-    flex: 1 1 240px;
-    max-width: 340px;
-`;
+const Wrapper = styled.article``;
 
 const ImageWrapper = styled.div`
     position: relative;
 `;
 
 const Image = styled.img`
-    max-width: 100%;
+    width: 100%;
 `;
 
 const Row = styled.div`
