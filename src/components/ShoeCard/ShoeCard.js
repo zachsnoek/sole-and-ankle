@@ -35,6 +35,7 @@ const ShoeCard = ({
         <Link href={`/shoe/${slug}`}>
             <Wrapper>
                 <ImageWrapper>
+                    <VariantFlag variant={variant} />
                     <Image alt="" src={imageSrc} />
                 </ImageWrapper>
                 <Spacer size={12} />
@@ -55,10 +56,51 @@ const Link = styled.a`
     color: inherit;
 `;
 
-const Wrapper = styled.article``;
+const Wrapper = styled.article`
+    display: flex;
+    flex-direction: column;
+`;
 
 const ImageWrapper = styled.div`
     position: relative;
+`;
+
+const VariantFlag = ({ variant }) => {
+    const shouldShowFlag = variant === 'on-sale' || variant === 'new-release';
+    if (!shouldShowFlag) {
+        return null;
+    }
+
+    const variantDataMap = {
+        'on-sale': {
+            text: 'Sale',
+            backgroundColor: `${COLORS.primary}`,
+        },
+        'new-release': {
+            text: 'Just released!',
+            backgroundColor: `${COLORS.secondary}`,
+        },
+    };
+
+    const variantData = variantDataMap[variant];
+
+    return (
+        <Flag style={{ '--background-color': variantData.backgroundColor }}>
+            {variantData.text}
+        </Flag>
+    );
+};
+
+const Flag = styled.div`
+    position: absolute;
+    top: 12px;
+    right: -4px;
+    padding: 7px 11px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 2px;
+    color: ${COLORS.white};
+    background: var(--background-color);
 `;
 
 const Image = styled.img`
@@ -67,6 +109,8 @@ const Image = styled.img`
 
 const Row = styled.div`
     font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
 `;
 
 const Name = styled.h3`
